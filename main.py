@@ -32,6 +32,10 @@ async def load(ctx, extention):
 async def unload(ctx, extention):
     bot.unload_extension(f'cogs.{extention}')
 
+@slash.slash(name="ping", description="Sends Thingy", guild_ids=guild_ids)
+async def _ping(ctx):
+    await ctx.send("Pong!")
+
 
 for filename in os.listdir('./cogs'):
     if filename.endswith('.py'):
