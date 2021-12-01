@@ -11,7 +11,7 @@ from discord_components import DiscordComponents, ComponentsBot, Button
 load_dotenv()
 token = os.getenv('TOKEN')
 
-bot = commands.Bot(command_prefix='prefix', intents=discord.Intents.all(), status=discord.Status.online, activity=discord.Activity(type=discord.ActivityType.playing, name="YourControls v2.6.3"))
+bot = commands.Bot(command_prefix='prefix', intents=discord.Intents.all(), status=discord.Status.online, activity=discord.Activity(type=discord.ActivityType.playing, name="Jacob > SafeShows"))
 slash = SlashCommand(bot, sync_commands=True, override_type=True)
 
 guild_ids = [764805300229636107]
