@@ -22,5 +22,11 @@ class help(commands.Cog):
         embed.add_field(name = "__**How To Install YourControls**__", value = "There are two ways to install YourControls either using the installer or by installing it manually. \n\n**Install Using The Installer**\nDownload and run the [installer](https://github.com/sequal32/yourcontrolsinstaller/releases/latest/download/installer.zip). If the installer doesn't launch then you may need to install [WebView2](https://go.microsoft.com/fwlink/p/?LinkId=2124703)\n\n**Manual Install**\nIf you would prefer to install it manually then please follow the instructions listed [here](https://docs.yourcontrols.one/installing#manual-installation).")
         await ctx.send(embed=embed)
 
+    @cog_ext.cog_slash(name="brokengauge", description="Shows possible fixes for the Could Not Connect To The YourControls Gauge error", guild_ids=guild_ids)
+    async def _gauge(self, ctx):
+        embed=discord.Embed(color=0x00d0ff)
+        embed.add_field(name = "__**How To Fix Broken YourControls Gauge**__", value = "If you're getting an error which says `Could Not Connect To The YourControls Gauge` then check out the steps [here](https://docs.yourcontrols.one/troubleshooting/known-issues#could-not-connect-to-the-yourcontrols-gauge) that should help you fix the issue")
+        await ctx.send(embed=embed)
+
 def setup(bot):
     bot.add_cog(help(bot))
