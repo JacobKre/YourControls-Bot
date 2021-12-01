@@ -7,6 +7,7 @@ from discord import message
 from discord.utils import get
 from discord.ext import commands
 from discord_slash import SlashCommand
+from discord_components import DiscordComponents, ComponentsBot, Button
 load_dotenv()
 token = os.getenv('TOKEN')
 
@@ -34,8 +35,7 @@ async def unload(ctx, extention):
 
 @slash.slash(name="ping", description="Sends Thingy", guild_ids=guild_ids)
 async def _ping(ctx):
-    await ctx.send("Pong!")
-
+    await ctx.send(f"🌍 Ping is `{round(bot.latency * 1000)}ms`")
 
 for filename in os.listdir('./cogs'):
     if filename.endswith('.py'):
