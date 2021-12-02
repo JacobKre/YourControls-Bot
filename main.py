@@ -80,6 +80,12 @@ async def _kick(ctx, member: discord.Member, reason: str):
     await member.kick()
     await ctx.send(embed=embed)
 
+@slash.slash(name="help", description="Shows list of commands", guild_ids=guild_ids)
+async def _help(ctx):
+        embed=discord.Embed(color=0x00d0ff)
+        embed.add_field(name = "__**Help**__", value = "\u200b\n`/aircraft` Gives you a list of the aircraft supported by YourControls\n\n`/install` Shows the instructions on how to install YourControls\n\n`/brokengauge` Shows the list of possible fixes for the > Could not connect to the YourControls gauge")
+        await ctx.send(embed=embed)
+
 for filename in os.listdir('./cogs'):
     if filename.endswith('.py'):
         bot.load_extension(f'cogs.{filename[:-3]}')
