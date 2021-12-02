@@ -10,6 +10,18 @@ class help(commands.Cog):
     def __init__(self, bot):
         self.bot = bot
 
+    @cog_ext.cog_slash(name="help", description="Shows list of commands", guild_ids=guild_ids)
+    async def _help(self, ctx):
+        embed=discord.Embed(color=0x00d0ff)
+        embed.add_field(name = "__**Help**__", value = "\u200b\n`/modhelp` Gives a list of all the moderation commands available\n\n`/aircraft` Gives you a list of the aircraft supported by YourControls\n\n`/install` Shows the instructions on how to install YourControls\n\n`/brokengauge` Shows the list of possible fixes for the > Could not connect to the YourControls gauge")
+        await ctx.send(embed=embed)
+
+    @cog_ext.cog_slash(name="modhelp", description="Shows list of moderation commands", guild_ids=guild_ids)
+    async def _modhelp(self, ctx):
+        embed=discord.Embed(color=0x00d0ff)
+        embed.add_field(name = "__**Moderation Commands**__", value = "\u200b\n`/ban` Bans a user\n\n`/kick` Kicks a user\n\n`/mute` Mutes a user\n\n`/unmute` Unmutes a user\n\n`/clear` Clears a number of messages\n\n`/warn` Warns a user")
+        await ctx.send(embed=embed)
+
     @cog_ext.cog_slash(name="aircraft", description="Lists supported aircraft", guild_ids=guild_ids)
     async def _aircraft(self, ctx):
         embed=discord.Embed(color=0x00d0ff)
