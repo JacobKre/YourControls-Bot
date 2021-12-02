@@ -149,6 +149,33 @@ async def _idban(ctx, id: str, reason: str):
     await ctx.send(embed=embed)
     await user.send(embed=embed2)
 
+@slash.slash(name="unban", description="Unbans a member from the server", guild_ids=guild_ids, options=[
+    create_option(
+        name="id",
+        description="ID of member to ban",
+        option_type=3,
+        required=True
+    )
+])
+@slash.permission(guild_id=764805300229636107,
+                  permissions=[
+                      create_permission(764805300229636107,
+                                        SlashCommandPermissionType.ROLE, False),
+                      create_permission(767844644498440193,
+                                        SlashCommandPermissionType.ROLE, True)
+                  ])
+async def _unban(ctx, id: str):
+    user = await bot.fetch_user(id)
+    embed = discord.Embed(title="Member Unbanned", color=discord.Color.green())
+    embed.add_field(name="Member:", value=f"{user.mention}\n**ID**: {user.id}", inline=False)
+    embed.add_field(name="Unbanned By:", value=f"{ctx.author.mention}", inline=False)
+
+    embed2 = discord.Embed(title=f"You Have Been Unbanned From {ctx.guild.name}", color=0xd92c0d)
+    embed2.add_field(name="Unbanned By:", value=f"{ctx.author.mention}", inline=False)
+    await ctx.guild.unban(user)
+    await ctx.send(embed=embed)
+    await user.send(embed=embed2)
+
 @slash.slash(name="help", description="Shows list of commands", guild_ids=guild_ids)
 async def _help(ctx):
         embed=discord.Embed(color=0x00d0ff)
