@@ -28,5 +28,11 @@ class help(commands.Cog):
         embed.add_field(name = "__**How To Fix Broken YourControls Gauge**__", value = "If you're getting an error which says `Could Not Connect To The YourControls Gauge` then check out the steps [here](https://docs.yourcontrols.one/troubleshooting/known-issues#could-not-connect-to-the-yourcontrols-gauge) that should help you fix the issue")
         await ctx.send(embed=embed)
 
+    @cog_ext.cog_slash(name="vatsim", description="Shows the instructions on how to use YourControls with Vatsim/IVAO", guild_ids=guild_ids)
+    async def _vatsim(self, ctx):
+        embed=discord.Embed(color=0x00d0ff)
+        embed.add_field(name = "__**How To Use YourControls With Vatsim/IVAO**__", value = "If you are looking to use YourControls with either Vatsim or IVAO then check out the instructions [here](https://docs.yourcontrols.one/using-with-vatsim-ivao)")
+        await ctx.send(embed=embed)
+
 def setup(bot):
     bot.add_cog(help(bot))
