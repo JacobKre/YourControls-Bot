@@ -176,6 +176,34 @@ async def _unban(ctx, id: str):
     await ctx.send(embed=embed)
     await user.send(embed=embed2)
 
+@slash.slash(name="clear", description="Removes a specified number of messages", guild_ids=guild_ids, options=[
+    create_option(
+        name="amount",
+        description="Number of messages to remove",
+        option_type=4,
+        required=True
+    )
+])
+@slash.permission(guild_id=764805300229636107,
+                  permissions=[
+                      create_permission(764805300229636107,
+                                        SlashCommandPermissionType.ROLE, False),
+                      create_permission(767844644498440193,
+                                        SlashCommandPermissionType.ROLE, True)
+                  ])
+async def _clear(ctx, amount):
+    if amount > 50:
+        embed = discord.Embed(description = f"⚠️ **Please choose a smaller number of messages to remove. (Max 50)**.", color = discord.Color.from_rgb(255, 234, 0))
+        await ctx.send(embed=embed)
+        await asyncio.sleep(6)
+        await ctx.channel.purge(limit=1)
+    else:
+        await ctx.channel.purge(limit=amount)
+        embed = discord.Embed(description = f"♻ **{amount} Messages Removed**.", color = discord.Color.green())
+        await ctx.send(embed=embed)
+        await asyncio.sleep(5)
+        await ctx.channel.purge(limit=1)
+
 @slash.slash(name="help", description="Shows list of commands", guild_ids=guild_ids)
 async def _help(ctx):
         embed=discord.Embed(color=0x00d0ff)
