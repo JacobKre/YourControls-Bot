@@ -114,6 +114,41 @@ async def _ban(ctx, member: discord.Member, reason: str):
     await ctx.send(embed=embed)
     await member.send(embed=embed2)
 
+@slash.slash(name="idban", description="Permanently removes a member from the server", guild_ids=guild_ids, options=[
+    create_option(
+        name="id",
+        description="ID of member to ban",
+        option_type=3,
+        required=True
+    ),
+    create_option(
+        name="reason",
+        description="Reason for ban",
+        option_type=3,
+        required=True
+    ),
+])
+@slash.permission(guild_id=764805300229636107,
+                  permissions=[
+                      create_permission(764805300229636107,
+                                        SlashCommandPermissionType.ROLE, False),
+                      create_permission(767844644498440193,
+                                        SlashCommandPermissionType.ROLE, True)
+                  ])
+async def _idban(ctx, id: str, reason: str):
+    user = await bot.fetch_user(id)
+    embed = discord.Embed(title="Member Banned", color=discord.Color.red())
+    embed.add_field(name="Member:", value=f"{user.mention}\n**ID**: {user.id}", inline=False)
+    embed.add_field(name="Banned By:", value=f"{ctx.author.mention}", inline=False)
+    embed.add_field(name="Reason:", value=f"{reason}", inline=False)
+
+    embed2 = discord.Embed(title=f"You Have Been Banned From {ctx.guild.name}", color=0xd92c0d)
+    embed2.add_field(name="Reason:", value=f"{reason}", inline=False)
+    embed2.add_field(name="Banned By:", value=f"{ctx.author.mention}", inline=False)
+    await ctx.guild.ban(user, reason=reason, delete_message_days=1)
+    await ctx.send(embed=embed)
+    await user.send(embed=embed2)
+
 @slash.slash(name="help", description="Shows list of commands", guild_ids=guild_ids)
 async def _help(ctx):
         embed=discord.Embed(color=0x00d0ff)
