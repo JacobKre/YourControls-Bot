@@ -8,6 +8,11 @@ from discord.utils import get
 from discord.ext import commands
 from discord_slash import SlashCommand
 from discord_components import DiscordComponents, ComponentsBot, Button
+from discord_slash.utils.manage_commands import create_option
+from discord_slash.utils.manage_commands import create_permission
+from discord_slash.model import SlashCommandPermissionType
+
+
 load_dotenv()
 token = os.getenv('TOKEN')
 
@@ -36,6 +41,44 @@ async def unload(ctx, extention):
 @slash.slash(name="ping", description="Sends Thingy", guild_ids=guild_ids)
 async def _ping(ctx):
     await ctx.send(f"🌍 Ping is `{round(bot.latency * 1000)}ms`")
+
+@slash.slash(name="kick", description="Remove A Member (They Can Still Rejoin)", guild_ids=guild_ids, options=[
+    create_option(
+        name="member",
+        description="Member to kick",
+        option_type=6,
+        required=True
+    ),
+    create_option(
+        name="reason",
+        description="Reason for kick",
+        option_type=3,
+        required=True
+    ),
+])
+@slash.permission(guild_id=764805300229636107,
+                  permissions=[
+                      create_permission(764805300229636107,
+                                        SlashCommandPermissionType.ROLE, False),
+                      create_permission(767844644498440193,
+                                        SlashCommandPermissionType.ROLE, True)
+                  ])
+async def _kick(ctx, member: discord.Member, reason: str):
+    embed = discord.Embed(title="Member Kicked", color=0xd92c0d)
+    embed.add_field(
+        name="Member:", value=f"{member.mention}\n**ID**: {member.id}", inline=False)
+    embed.add_field(name="Kicked By:",
+                    value=f"{ctx.author.mention}", inline=False)
+    embed.add_field(name="Reason:", value=f"{reason}", inline=False)
+
+    embed2 = discord.Embed(
+        title=f"You Have Been Kicked from {ctx.guild.name}", color=0xd92c0d)
+    embed2.add_field(name="Reason:", value=f"{reason}", inline=False)
+    embed2.add_field(name="Kicked By:",
+                     value=f"{ctx.author.mention}", inline=False)
+    await member.send(embed=embed2)
+    await member.kick()
+    await ctx.send(embed=embed)
 
 for filename in os.listdir('./cogs'):
     if filename.endswith('.py'):
