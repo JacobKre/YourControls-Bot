@@ -13,7 +13,7 @@ class help(commands.Cog):
     @cog_ext.cog_slash(name="help", description="Shows list of commands", guild_ids=guild_ids)
     async def _help(self, ctx):
         embed=discord.Embed(color=0x00d0ff)
-        embed.add_field(name = "__**Help**__", value = "\u200b\n`/modhelp` Gives a list of all the moderation commands available\n\n`/aircraft` Gives you a list of the aircraft supported by YourControls\n\n`/install` Shows the instructions on how to install YourControls\n\n`/brokengauge` Shows the list of possible fixes for the > Could not connect to the YourControls gauge")
+        embed.add_field(name = "__**Help**__", value = "\u200b\n`/modhelp` Gives a list of all the moderation commands available\n\n`/aircraft` Gives you a list of the aircraft supported by YourControls\n\n`/install` Shows the instructions on how to install YourControls\n\n`/brokengauge` Shows the list of possible fixes for the Could not connect to the YourControls gauge\n\n`/vatsim` Shows the instructions on how to use YourControls with Vatsim/IVAO\n\n`/nomsg` Shows possible fixes for the No Message Recived From Server error")
         await ctx.send(embed=embed)
 
     @cog_ext.cog_slash(name="modhelp", description="Shows list of moderation commands", guild_ids=guild_ids)
