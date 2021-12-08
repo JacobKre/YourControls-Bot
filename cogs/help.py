@@ -46,5 +46,11 @@ class help(commands.Cog):
         embed.add_field(name = "__**How To Use YourControls With Vatsim/IVAO**__", value = "If you are looking to use YourControls with either Vatsim or IVAO then check out the instructions [here](https://docs.yourcontrols.one/using-with-vatsim-ivao)")
         await ctx.send(embed=embed)
 
+    @cog_ext.cog_slash(name="nomsg", description="Shows possible fixes for the No Message Recived From Server error", guild_ids=guild_ids)
+    async def _nomsg(self, ctx):
+        embed=discord.Embed(color=0x00d0ff)
+        embed.add_field(name = "__**No Message Received From Server**__", value = "There are a number of reasons that you may be getting this error. Check both your firewall and router settings and ensure neither of them are blocking YourControls, or that your ISP is blocking the connection. Also, make sure you both have the latest version of YourControls and try with IPv4 P2P and direct.")
+        await ctx.send(embed=embed)
+
 def setup(bot):
     bot.add_cog(help(bot))
