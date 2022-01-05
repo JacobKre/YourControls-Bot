@@ -36,8 +36,10 @@ class help(commands.Cog):
 
     @cog_ext.cog_slash(name="brokengauge", description="Shows possible fixes for the Could Not Connect To The YourControls Gauge error", guild_ids=guild_ids)
     async def _gauge(self, ctx):
+        file = discord.File("imgs/paths.png", filename="paths.png")
         embed=discord.Embed(color=0x00d0ff)
-        embed.add_field(name = "__**How To Fix Broken YourControls Gauge**__", value = "If you're getting an error which says `Could Not Connect To The YourControls Gauge` then check out the steps [here](https://docs.yourcontrols.one/troubleshooting/known-issues#could-not-connect-to-the-yourcontrols-gauge) that should help you fix the issue")
+        embed.add_field(name = "__**How To Fix Broken YourControls Gauge**__", value = "If you're getting an error which says `Could Not Connect To The YourControls Gauge` one possibility for why YourControls can't connect to the gauge is because when YourControls was installed all or parts of the app were installed to the wrong location.\n\n**Step 1:**\nExit Microsoft Flight Simulator if it's running\n\n**Step 2:**\nDownload, extract and run the installer from [here](https://github.com/Sequal32/yourcontrolsinstaller/releases/download/1.2.4/installer.zip)\n\n**Step 3:**\nVerify the paths are correct. **The first path is the install location** (Where you want to launch YourControls from) and the **second path is the location of your MSFS Community folder.**")        
+        embed.set_image(url="https://cdn.discordapp.com/attachments/793511228986097727/928425976352894986/YC_Install.png")
         await ctx.send(embed=embed)
 
     @cog_ext.cog_slash(name="vatsim", description="Shows the instructions on how to use YourControls with Vatsim/IVAO", guild_ids=guild_ids)
