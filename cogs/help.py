@@ -44,7 +44,7 @@ class help(commands.Cog):
     @cog_ext.cog_slash(name="vatsim", description="Shows the instructions on how to use YourControls with Vatsim/IVAO", guild_ids=guild_ids)
     async def _vatsim(self, ctx):
         embed=discord.Embed(color=0x00d0ff)
-        embed.add_field(name = "__**How To Use YourControls With Vatsim/IVAO**__", value = "If you are looking to use YourControls with either Vatsim or IVAO then check out the instructions [here](https://docs.yourcontrols.one/using-with-vatsim-ivao)")
+        embed.add_field(name = "__**How To Use YourControls With Vatsim/IVAO**__", value = "If you are looking to use YourControls with either Vatsim or IVAO then check out the instructions [here](https://docs.yourcontrols.one/vatsim-ivao)")
         await ctx.send(embed=embed)
 
     @cog_ext.cog_slash(name="nomsg", description="Shows possible fixes for the No Message Recived From Server error", guild_ids=guild_ids)
