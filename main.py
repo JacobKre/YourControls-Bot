@@ -71,13 +71,6 @@ async def _ping(ctx):
         required=True
     ),
 ])
-@slash.permission(guild_id=764805300229636107,
-                  permissions=[
-                      create_permission(764805300229636107,
-                                        SlashCommandPermissionType.ROLE, False),
-                      create_permission(767844644498440193,
-                                        SlashCommandPermissionType.ROLE, True)
-                  ])
 async def _kick(ctx, member: discord.Member, reason: str):
     embed = discord.Embed(title="Member Kicked", color=0xd92c0d)
     embed.add_field(
@@ -109,13 +102,6 @@ async def _kick(ctx, member: discord.Member, reason: str):
         required=True
     ),
 ])
-@slash.permission(guild_id=764805300229636107,
-                  permissions=[
-                      create_permission(764805300229636107,
-                                        SlashCommandPermissionType.ROLE, False),
-                      create_permission(767844644498440193,
-                                        SlashCommandPermissionType.ROLE, True)
-                  ])
 async def _ban(ctx, member: discord.Member, reason: str):
     embed = discord.Embed(title="Member Banned", color=discord.Color.red())
     embed.add_field(name="Member:", value=f"{member.mention}\n**ID**: {member.id}", inline=False)
@@ -143,13 +129,6 @@ async def _ban(ctx, member: discord.Member, reason: str):
         required=True
     ),
 ])
-@slash.permission(guild_id=764805300229636107,
-                  permissions=[
-                      create_permission(764805300229636107,
-                                        SlashCommandPermissionType.ROLE, False),
-                      create_permission(767844644498440193,
-                                        SlashCommandPermissionType.ROLE, True)
-                  ])
 async def _idban(ctx, id: str, reason: str):
     user = await bot.fetch_user(id)
     embed = discord.Embed(title="Member Banned", color=discord.Color.red())
@@ -172,13 +151,6 @@ async def _idban(ctx, id: str, reason: str):
         required=True
     )
 ])
-@slash.permission(guild_id=764805300229636107,
-                  permissions=[
-                      create_permission(764805300229636107,
-                                        SlashCommandPermissionType.ROLE, False),
-                      create_permission(767844644498440193,
-                                        SlashCommandPermissionType.ROLE, True)
-                  ])
 async def _unban(ctx, id: str):
     user = await bot.fetch_user(id)
     embed = discord.Embed(title="Member Unbanned", color=discord.Color.green())
@@ -199,13 +171,6 @@ async def _unban(ctx, id: str):
         required=True
     )
 ])
-@slash.permission(guild_id=764805300229636107,
-                  permissions=[
-                      create_permission(764805300229636107,
-                                        SlashCommandPermissionType.ROLE, False),
-                      create_permission(767844644498440193,
-                                        SlashCommandPermissionType.ROLE, True)
-                  ])
 async def _clear(ctx, amount):
     if amount > 50:
         embed = discord.Embed(description = f"⚠️ **Please choose a smaller number of messages to remove. (Max 50)**.", color = discord.Color.from_rgb(255, 234, 0))
