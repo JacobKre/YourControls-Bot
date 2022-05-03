@@ -24,7 +24,7 @@ ready = False
 
 async def changePres():
     await bot.wait_until_ready()
-    statuses = ["/help", "Jacob > SafeShows"]
+    statuses = ["/help", "Flying With Friends"]
     await bot.change_presence()
     while not bot.is_closed():
         status = random.choice(statuses)
