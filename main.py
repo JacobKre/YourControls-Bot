@@ -1,3 +1,4 @@
+from email.errors import MessageError
 import os
 from dotenv import load_dotenv
 import discord
@@ -43,6 +44,11 @@ async def on_ready():
     print("Ready!")
     ready = True
 
+@bot.event
+async def on_message(message):
+    if ("support" in message.content) and ("737" in message.content) and message.author.id != 776052285235003392:
+        await message.reply("Support for the PMDG 737 will come when it comes, if it comes at all. Until then, please be paitient and enjoy of the other aircraft YourControls supports.")
+        
 #Load Cogs
 @bot.command()
 async def load(ctx, extention):
